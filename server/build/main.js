@@ -206,6 +206,8 @@ var _DB = __webpack_require__(11);
 
 var _api = __webpack_require__(12);
 
+var _config = __webpack_require__(7);
+
 var _passport = __webpack_require__(1);
 
 var _passport2 = _interopRequireDefault(_passport);
@@ -218,10 +220,8 @@ var _passportJwt = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _process$env = process.env,
-    PORT = _process$env.PORT,
-    DB_url = _process$env.DB_url;
-
+var port = process.env.PORT || config.PORT;
+var config = (0, _config.getConfig)("development");
 
 (0, _DB.connect)();
 
@@ -256,8 +256,8 @@ app.use(function (error, req, res, next) {
 	});
 });
 
-app.listen(PORT, function (req, res) {
-	console.log('express marche sur le port ' + PORT);
+app.listen(port, function (req, res) {
+	console.log('express marche sur le port ' + port);
 });
 
 /***/ }),

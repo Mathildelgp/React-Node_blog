@@ -3,12 +3,14 @@ import volleyball from 'volleyball'
 import 'dotenv/config'
 import { connect } from './config/DB'
 import { restRouter } from './api'
+import { getConfig } from './config/config'
 import passport from 'passport'
 import cors from "cors"
 import { configJWTStrategy } from './api/middleware/passport-jwt';
 
 
-const { PORT, DB_url } = process.env
+const port = process.env.PORT || config.PORT
+const config = getConfig(process.env.NODE_ENV)
 
 connect()
 
@@ -43,6 +45,6 @@ app.use((error, req, res, next) => {
 	})
 })
 
-app.listen( PORT, (req, res) => {
-	console.log(`express marche sur le port ${PORT}`)
+app.listen( port, (req, res) => {
+	console.log(`express marche sur le port ${port}`)
 })
